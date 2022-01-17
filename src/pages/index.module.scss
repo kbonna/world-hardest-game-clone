@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --col-red: #fe0002;
+  --col-yellow: #ffff00;
+  --col-blue: #0000fb;
+  --col-violet: #b5b5ff;
+  --col-green: #b0dbae;
+  --col-green-dark: #86fd81;
+  --col-gray-ligth: #f7f7ff;
+  --col-gray-dark: #e6e6ff;
+}
+
+body {
+  --footer-height: 5rem;
+  font-family: "Mochiy Pop P One", sans-serif;
+  background: rgb(117, 117, 190);
+  min-height: 100vh;
+}
+
+.Main {
+  height: calc(100vh - var(--footer-height));
+  display: grid;
+  place-items: center;
+}
+
+.Footer {
+  height: var(--footer-height);
+}
+
+.Wrapper {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  width: 70%;
+  @media screen and (min-width: 1137px) and (max-width: 1673px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 1137px) {
+    width: 90%;
+  }
+}
+
+.Board {
+  position: relative;
+  transition: transform 500ms ease-in-out;
+  transform-style: preserve-3d;
+
+  &_front,
+  &_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  &_front {
+    transform: rotateX(180deg);
+  }
+
+  &___isFlipped {
+    transform: rotateX(180deg);
+  }
+}
