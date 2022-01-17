@@ -1,0 +1,73 @@
+{
+  "coins": [],
+  "playerRespawns": [
+    [1, 4],
+    [3, 12]
+  ],
+  "enemies": [
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [0.4, 5.5],
+        [1.6, 5.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [1.6, 6.5],
+        [0.4, 6.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [0.4, 11.5],
+        [1.6, 11.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [1.6, 12.5],
+        [0.4, 12.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [4.4, 5.5],
+        [5.6, 5.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [5.6, 6.5],
+        [4.4, 6.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [4.4, 11.5],
+        [5.6, 11.5]
+      ]
+    },
+    {
+      "type": "linear",
+      "speed": 2,
+      "checkpoints": [
+        [5.6, 12.5],
+        [4.4, 12.5]
+      ]
+    }
+  ]
+}

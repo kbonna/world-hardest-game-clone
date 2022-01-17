@@ -1,0 +1,29 @@
+.Bar {
+  background-color: black;
+  color: white;
+  display: flex;
+}
+
+.Bar_buttonBox,
+.Bar_levelBox,
+.Bar_deathBox {
+  text-align: center;
+  flex-basis: 0;
+  flex-grow: 1;
+  font-size: clamp(1rem, 2vw, 2rem);
+  padding: 0.5rem 0;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+
+  &:disabled {
+    cursor: default;
+    color: rgba(255, 255, 255, 0.25);
+  }
+}

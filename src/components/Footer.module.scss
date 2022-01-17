@@ -1,0 +1,12 @@
+.Footer {
+  display: grid;
+  place-items: center;
+  background-color: black;
+  color: white;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }
+}
