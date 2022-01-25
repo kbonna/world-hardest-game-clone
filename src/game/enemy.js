@@ -29,7 +29,7 @@ class Enemy {
 class RadialEnemy extends Enemy {
   /**
    *
-   * @param {Array<number>} origin
+   * @param {Point} origin
    *  Anchor point in array coordinates.
    * @param {number} radius
    *  Movement radius in array coordinates.
@@ -67,47 +67,51 @@ class RadialEnemy extends Enemy {
   }
 }
 
+/**
+ * Represent enemies moving with constant speed from one checkpoint to another
+ */
 class LinearEnemy extends Enemy {
+  /**
+   *
+   * @param {Array<Point>} checkpoints
+   *  List of subsequent checkpoints to visit by enemy.
+   * @param {number} speed
+   *  Linear speed for enemy ball.
+   * @param {Map} mapInstance
+   *  Map instance on which enemy is drawn.
+   */
   constructor(checkpoints, speed, mapInstance) {
     super();
     // Recalculate checkpoints to canvas pixel units
     this.checkpoints = checkpoints.map(mapInstance.arrayPointToCanvasPoint);
-
-    this.nCheckpoints = this.checkpoints.length;
-    this.currentCheckpoint = this.checkpoints[0];
-    this.nextCheckpoint = this.checkpoints[1];
+    this.current = 0;
+    this.next = 1;
     // Initial position
-    this.x = this.currentCheckpoint[0];
-    this.y = this.currentCheckpoint[1];
+    this.x = this.checkpoints[this.current][0];
+    this.y = this.checkpoints[this.current][1];
 
     // Speed
     this.speed = speed || DEFAULT_LINEAR_ENEMY_SPEED;
   }
 
-  getNextCheckpoint(checkpoint) {
-    const index = this.checkpoints.findIndex(
-      (point) => point[0] === checkpoint[0] && point[1] === checkpoint[1]
+  updateCheckpoints() {
+    const distanceToNextCheckpoint = Math.sqrt(
+      (this.x - this.checkpoints[this.next][0]) ** 2 +
+        (this.y - this.checkpoints[this.next][1]) ** 2
     );
-    return index + 1 === this.nCheckpoints ? this.checkpoints[0] : this.checkpoints[index + 1];
-  }
-
-  updateCheckpoint() {
-    const distanceToCheckpoint = Math.sqrt(
-      (this.x - this.nextCheckpoint[0]) ** 2 + (this.y - this.nextCheckpoint[1]) ** 2
-    );
-    if (distanceToCheckpoint < this.speed) {
-      this.currentCheckpoint = this.nextCheckpoint;
-      this.nextCheckpoint = this.getNextCheckpoint(this.nextCheckpoint);
+    if (distanceToNextCheckpoint < this.speed) {
+      this.current = this.next;
+      this.next = this.next + 1 === this.checkpoints.length ? 0 : this.next + 1;
     }
   }
 
   move() {
-    const dx = this.nextCheckpoint[0] - this.x;
-    const dy = this.nextCheckpoint[1] - this.y;
+    const dx = this.checkpoints[this.next][0] - this.x;
+    const dy = this.checkpoints[this.next][1] - this.y;
     const vecLength = Math.sqrt(dx ** 2 + dy ** 2);
     this.x += (this.speed * dx) / vecLength;
     this.y += (this.speed * dy) / vecLength;
-    this.updateCheckpoint();
+    this.updateCheckpoints();
   }
 }
 

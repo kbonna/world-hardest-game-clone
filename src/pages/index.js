@@ -70,7 +70,6 @@ const IndexPage = ({ data }) => {
 
   const gameLoop = () => {
     // loop is running only when menu is hidden
-    console.log("loop");
     if (!isMenuShowed) {
       animationRef.current = requestAnimationFrame(gameLoop);
     }
