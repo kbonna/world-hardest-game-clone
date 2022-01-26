@@ -51,6 +51,8 @@ const IndexPage = ({ data }) => {
   };
 
   const onRestart = () => {
+    // canvasRef.current.focus();
+    document.activeElement.blur();
     setIsMenuShowed(false);
     if (currentLevelIndex === 0) {
       setGameObjects(levels[currentLevelIndex], canvasRef, boardRef, setGame);
